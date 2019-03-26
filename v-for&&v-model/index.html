@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-model v-for</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.common.dev.js"></script>
+    <script>
+        window.onload=function () {
+            new Vue({
+                el: '#new',
+                data: {
+                    name:'',
+                }
+            });
+            new Vue({
+                el:'#for',
+                data:{
+                    names:'JJ',
+                    msg:[                       <!-- msg 是原始数据数组(source data array)-->
+                        { m:'666' },
+                        { m:'233' },
+                    ]
+                }
+            });
+
+            new Vue({
+                el:'#Jfor',
+                data:{
+                    fans:{                             <!-- fans 为创建的对象-->
+                        first:'aaa',
+                        second:'bbb',
+                        third:'ccc'
+
+                    },
+                },
+            })
+        }
+    </script>
+</head>
+<body>
+
+<div id="new">
+    name : <input v-model="name">
+    <p> name is :{{name}}</p>
+</div>
+
+<div>
+    <ul id="for">
+        <li v-for="(s,index) in msg">   <!-- msg 是原始数据数组(source data array)，而 s 是数组中每个迭代元素的指代别名(alias)  index为索引-->
+            {{names}}-{{index}}-{{s.m}}   <!-- 遍历数组s-->
+        </li>
+    </ul>
+
+    <ul id="Jfor">
+        <li v-for="(value,key) in fans">  <!-- 对象的键名(key) -->
+            {{key}}:{{value}}   <!-- 遍历对象fans-->
+        </li>
+    </ul>
+</div>
+
+
+</body>
+</html>
