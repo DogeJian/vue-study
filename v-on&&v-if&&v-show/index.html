@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on&&v-if&&v-show</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script>
+        window.onload=function () {
+            new Vue({
+                el:'#shuaijian',
+                data:{
+                    arr:["66","77","88"],
+                    flag:true,
+                },
+                methods:{
+                    show:function(){
+                      console.log(666);
+                    },
+                    add() {
+                        this.arr.push(99);
+                    }
+                },
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="shuaijian">
+    <button v-on:click="show">console.log(666)</button>  //函数中不传参即可不加（）
+    <button v-on:click="add()">点点</button>
+    {{arr}}
+    <div style="width: 100px;height: 100px;background-color: antiquewhite" v-show="flag">666</div> //v-show 只是display:none
+    <div style="width: 100px;height: 100px;background-color:salmon" v-if="flag">233</div>  //v-if 直接删除div，显示则再新创建
+    <hr>
+    <button v-on:click="flag=!flag">隐藏/显示</button>
+</div>
+</body>
+</html>
