@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <link rel="stylesheet" href="bootstrap.css">
+    <script src="jquery.js"></script>
+    <script src="bootstrap.js"></script>
+
+
+    <script>
+        /*
+        自定义键位别名：
+        */
+        Vue.config.keyCodes={
+            a:65,
+        }
+        window.onload=function () {
+            new Vue({
+                el:'.container',
+                data:{
+
+                },
+                methods:{
+                    shuai(){
+                        console.log(666);
+                    },
+                    jian(e){
+                        console.log(e.target.innerHTML);
+                    },
+                    stop(){
+                        console.log(111);
+                    },
+                    print(){
+                        console.log('按下了回车');
+                    },
+                    down(d){
+                        console.log(d.keyCode);
+                    },
+                    }
+            })
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <button @click="shuai">点点</button>  <!-- @click = v-on:click -->
+    <button @click="jian($event)">console.log</button>  <!--$event获取事件对象 -->
+    <div @click="shuai">
+    <button @click.stop="stop">stop</button> <!-- 阻止事件冒泡（默认往上传播） -->
+    </div>
+    <a href="#" @click.prevent="shuai">链接</a> <!-- 阻止事件默认行为  ‘a标签#号’ -->
+    <input type="text" @keydown.13="print" @keydown.enter="print" @keydown.a="stop">   <!-- 按下键盘事件 其中@keydown.a/b/c...有些不支持读取，需要自己通过Vue接口定义【如上】 -->
+    <input type="text" @keydown="down($event)">   <!-- 按下键盘事件 -->
+</div>
+</body>
+</html>
